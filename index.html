@@ -1,0 +1,2757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VALDORA · Grand Luxury SUV</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F7F3EE'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23B2874E' stroke-width='1.6'/%3E%3Cpolygon points='16,10 20,20 12,20' fill='%23B2874E' opacity='.7'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── DESIGN TOKENS (Faithfully adapted from HAKUBA) ── */
+    :root {
+      --pearl:   #F7F3EE;
+      --mist:    #EAE3DB;
+      --ink:     #1E1A17;
+      --bronze:  #B2874E;
+      --blush:   #D8B7B0;
+      --mid:     rgba(30, 26, 23, .54);
+      --line:    rgba(30, 26, 23, .12);
+      --nav:     74px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--pearl);
+      color: var(--ink);
+      font: 300 15px/1.7 'Zen Kaku Gothic New', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .ser { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300; }
+    .lbl {
+      font: 400 9.5px/1 'Zen Kaku Gothic New', sans-serif;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--bronze);
+    }
+
+    /* ── MASTER NAVIGATION (Glassmorphism & Auto Invert) ── */
+    nav.master-nav {
+      position: fixed;
+      inset: 0 0 auto;
+      height: var(--nav);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 clamp(18px, 3.4vw, 54px);
+      background: rgba(247, 243, 238, .94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      transition: background .4s cubic-bezier(.4, 0, .2, 1), border-color .4s, color .4s;
+    }
+    nav.master-nav.inv {
+      background: rgba(30, 26, 23, .90);
+      border-color: rgba(255, 255, 255, .08);
+      color: var(--pearl);
+    }
+    nav.master-nav .mk {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 23px;
+      letter-spacing: .34em;
+      white-space: nowrap;
+      color: inherit;
+    }
+    nav.master-nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+    nav.master-nav ul li a {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color .2s ease;
+      position: relative;
+      padding: 6px 0;
+    }
+    nav.master-nav ul li a:hover { color: var(--ink); }
+    nav.master-nav.inv ul li a { color: rgba(247, 243, 238, .55); }
+    nav.master-nav.inv ul li a:hover { color: var(--pearl); }
+
+    .res-btn {
+      border: 1px solid var(--bronze);
+      color: var(--bronze);
+      padding: 11px 22px;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      transition: background .3s, color .3s, border-color .3s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .res-btn:hover {
+      background: var(--bronze);
+      color: var(--pearl);
+    }
+    nav.master-nav.inv .res-btn {
+      border-color: rgba(247, 243, 238, .7);
+      color: var(--pearl);
+    }
+    nav.master-nav.inv .res-btn:hover {
+      background: var(--bronze);
+      border-color: var(--bronze);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ── HERO COVER (Capa Cinematográfica: Foto do Carro + Tipografia Valdora Móvel) ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--nav);
+      overflow: hidden;
+      background: var(--pearl);
+    }
+    #hero .wash {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 50% at 50% 45%, rgba(216, 183, 176, .25), transparent 75%),
+        radial-gradient(50% 45% at 20% 80%, rgba(178, 135, 78, .16), transparent 75%),
+        linear-gradient(160deg, #FBF8F4 0%, #EFE7DE 52%, #E4D9CE 100%);
+      z-index: 1;
+    }
+    #hero .ray {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 0 46%, rgba(255, 255, 255, .45) 46% 47%, transparent 47%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    #hero .backdrop-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      opacity: .88;
+      pointer-events: none;
+      z-index: 2;
+      filter: saturate(1.15) contrast(1.05);
+    }
+    #hero .cover-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(247, 243, 238, .88) 0%, rgba(247, 243, 238, .15) 45%, rgba(247, 243, 238, .45) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Giant watermark marquee that moves with mouse */
+    #hero .marquee {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 3;
+      user-select: none;
+      text-align: center;
+    }
+    #hero .marquee b {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(96px, 22vw, 320px);
+      letter-spacing: .18em;
+      line-height: .86;
+      color: rgba(255, 252, 246, .85);
+      text-shadow: 0 4px 28px rgba(30, 26, 23, .25), 0 1px 3px rgba(255, 255, 255, .5);
+      white-space: nowrap;
+      display: inline-block;
+      will-change: transform;
+      transition: transform .1s ease-out;
+    }
+
+    #hero .cover-footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: clamp(28px, 4.5vh, 52px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    #hero .cover-footer .lbl {
+      color: var(--bronze);
+      letter-spacing: .32em;
+    }
+    #hero .cover-scroll-indicator {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--mid);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      transition: color .2s, transform .2s;
+      cursor: pointer;
+    }
+    #hero .cover-scroll-indicator:hover {
+      color: var(--ink);
+      transform: translateY(3px);
+    }
+    #hero .cover-scroll-indicator .scrl-line {
+      width: 1px;
+      height: 40px;
+      background: var(--bronze);
+      animation: scrlPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrlPulse {
+      0%, 100% { opacity: .4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.25); }
+    }
+
+    /* ── SHOWCASE SECTION (Estúdio do Carro, Cores e Especificações) ── */
+    #showcase {
+      position: relative;
+      min-height: 100vh;
+      padding: clamp(64px, 8vw, 110px) clamp(24px, 4vw, 68px) clamp(48px, 6vw, 84px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--pearl);
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+    }
+    #showcase .showcase-wash {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(55% 45% at 75% 45%, rgba(216, 183, 176, .24), transparent 72%),
+        radial-gradient(45% 40% at 20% 70%, rgba(178, 135, 78, .14), transparent 70%);
+      pointer-events: none;
+    }
+    #showcase .showcase-main {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: clamp(32px, 4vw, 72px);
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+    #showcase .plate {
+      max-width: 440px;
+    }
+    #showcase .plate .ed {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(34px, 4.4vw, 58px);
+      line-height: 1.04;
+      letter-spacing: .02em;
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+    #showcase .plate .ed em {
+      font-style: italic;
+      color: var(--bronze);
+    }
+    #showcase .plate p {
+      font-size: 14.5px;
+      line-height: 1.78;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* Studio car stack with photorealistic crossfade */
+    #showcase .car-stage {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #showcase .carstack {
+      position: relative;
+      width: 100%;
+      max-width: 1050px;
+      pointer-events: none;
+    }
+    #showcase .car-ground-shadow {
+      position: absolute;
+      bottom: -8px;
+      left: 6%;
+      width: 88%;
+      height: 38px;
+      background: radial-gradient(ellipse at center, rgba(20, 16, 14, .52) 0%, rgba(20, 16, 14, .18) 50%, transparent 75%);
+      filter: blur(14px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #showcase .carstack .cc {
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transition: opacity .8s cubic-bezier(.4, 0, .2, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      filter: drop-shadow(0 22px 34px rgba(30, 26, 23, .22));
+      z-index: 2;
+    }
+    #showcase .carstack .cc.on {
+      opacity: 1;
+      position: relative;
+    }
+
+    /* Paint Swatches */
+    .paints {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .paints .sw {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--c);
+      cursor: pointer;
+      border: 1px solid rgba(42, 37, 33, .24);
+      padding: 0;
+      position: relative;
+      transition: transform .3s cubic-bezier(.3, .9, .3, 1);
+    }
+    .paints .sw:hover { transform: scale(1.15); }
+    .paints .sw::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border: 1.5px solid var(--bronze);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(.8);
+      transition: opacity .3s, transform .3s cubic-bezier(.3, .9, .3, 1);
+    }
+    .paints .sw.on::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .paints .pn {
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-left: 8px;
+    }
+
+    /* Specs callout row */
+    #showcase .showcase-specs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--line);
+      max-width: 1440px;
+      margin: 48px auto 0;
+      width: 100%;
+      z-index: 5;
+      position: relative;
+    }
+    #showcase .showcase-specs div {
+      background: rgba(247, 243, 238, .92);
+      backdrop-filter: blur(10px);
+      padding: 18px 24px;
+      text-align: center;
+    }
+    #showcase .showcase-specs b {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 3.4vw, 42px);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      margin-bottom: 5px;
+      color: var(--ink);
+    }
+    #showcase .showcase-specs span {
+      font-size: 9.5px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    @media (max-width: 1024px) {
+      #showcase .showcase-main {
+        grid-template-columns: 1fr;
+      }
+      #showcase .plate {
+        max-width: 100%;
+      }
+      #showcase .showcase-specs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── SPEC BAND (Dark Contrast Row) ── */
+    #band {
+      background: var(--ink);
+      color: var(--pearl);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background-color: rgba(255, 255, 255, .08);
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+    #band .cell {
+      background: var(--ink);
+      padding: clamp(24px, 3.6vw, 42px) clamp(20px, 3vw, 44px);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    #band .cell b {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 3.8vw, 48px);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      letter-spacing: .02em;
+    }
+    #band .cell span {
+      font-size: 9.5px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(247, 243, 238, .54);
+    }
+
+    /* ── TRIM PICKER SECTION ── */
+    #trim {
+      padding: clamp(72px, 10vw, 130px) clamp(24px, 5vw, 84px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(36px, 6vw, 90px);
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    #trim .copy h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(30px, 4.2vw, 54px);
+      line-height: 1.05;
+      margin-top: 14px;
+      margin-bottom: 18px;
+    }
+    #trim .copy h2 em { font-style: italic; color: var(--bronze); }
+    #trim .copy p {
+      font-size: 14.5px;
+      line-height: 1.76;
+      color: var(--mid);
+      max-width: 46ch;
+      margin-bottom: 34px;
+    }
+
+    .readout {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      max-width: 460px;
+    }
+    .readout div {
+      background: var(--pearl);
+      padding: 20px 24px;
+    }
+    .readout b {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(32px, 4vw, 44px);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+    .readout span {
+      font-size: 9.5px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .picker {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .picker-btn {
+      background: var(--pearl);
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      font: inherit;
+      color: inherit;
+      transition: background .3s, color .3s;
+    }
+    .picker-btn:hover { background: var(--mist); }
+    .picker-btn.active {
+      background: var(--ink);
+      color: var(--pearl);
+    }
+    .picker-btn .nm {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 21px;
+    }
+    .picker-btn .no {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .6;
+    }
+
+    /* ── FULL-BLEED ROAD SECTION ── */
+    #road {
+      position: relative;
+      height: 82vh;
+      min-height: 540px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    #road .fixframe {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #road .fixframe img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 62%;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    #road:hover .fixframe img {
+      transform: scale(1.08);
+    }
+    #road .over {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        rgba(26, 22, 19, .92) 0%,
+        rgba(26, 22, 19, .72) 38%,
+        rgba(26, 22, 19, .22) 64%,
+        transparent 82%);
+      z-index: 2;
+    }
+    #road .content {
+      position: relative;
+      z-index: 4;
+      padding: clamp(36px, 6vw, 88px) clamp(24px, 5vw, 84px);
+      max-width: 620px;
+    }
+    #road .content h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: 1.04;
+      letter-spacing: .02em;
+      color: var(--pearl);
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+    #road .content p {
+      font-size: 14.5px;
+      line-height: 1.78;
+      color: rgba(247, 243, 238, .78);
+      max-width: 48ch;
+      margin-bottom: 34px;
+    }
+
+    /* ── GALLERY RAIL SECTION ── */
+    #gallery {
+      padding: clamp(68px, 9vw, 110px) 0;
+      overflow: hidden;
+    }
+    #gallery .header {
+      padding: 0 clamp(24px, 5vw, 84px);
+      margin-bottom: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #gallery .header h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(28px, 3.8vw, 48px);
+      line-height: 1.05;
+    }
+    #gallery .header h2 em { font-style: italic; color: var(--bronze); }
+    .rail-wrap {
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      width: 100%;
+    }
+    .rail-wrap.grabbing { cursor: grabbing; }
+    .rail {
+      display: flex;
+      gap: 18px;
+      padding: 0 clamp(24px, 5vw, 84px);
+      will-change: transform;
+      transition: transform .05s linear;
+    }
+    .rail figure {
+      flex: 0 0 clamp(320px, 38vw, 560px);
+      position: relative;
+      overflow: hidden;
+      background: var(--mist);
+      border: 1px solid var(--line);
+    }
+    .rail figure .img-box {
+      width: 100%;
+      height: clamp(230px, 26vw, 370px);
+      overflow: hidden;
+      position: relative;
+    }
+    .rail figure .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.3, .9, .3, 1);
+    }
+    .rail figure:hover .img-box img {
+      transform: scale(1.05);
+    }
+    .rail figcaption {
+      padding: 16px 20px 20px;
+      font-size: 10.5px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      background: var(--pearl);
+    }
+
+    /* ── COCKPIT HOTSPOTS SECTION ── */
+    #interior {
+      padding: clamp(72px, 10vw, 130px) clamp(24px, 5vw, 84px);
+      background: var(--mist);
+    }
+    #interior .header {
+      max-width: 1440px;
+      margin: 0 auto 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    #interior .header h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(28px, 3.8vw, 48px);
+    }
+    #interior .header h2 em { font-style: italic; color: var(--bronze); }
+    #interior .ifig {
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      background: var(--ink);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 28px 60px rgba(30, 26, 23, .16);
+    }
+    #interior .ifig .scene {
+      width: 100%;
+      height: clamp(340px, 50vw, 720px);
+      position: relative;
+    }
+    #interior .ifig .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Hotspot Button with Ping Animation */
+    .hs {
+      position: absolute;
+      z-index: 10;
+    }
+    .hs button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(247, 243, 238, .92);
+      background: rgba(30, 26, 23, .36);
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+      transition: background .3s, border-color .3s;
+    }
+    .hs button::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: var(--pearl);
+    }
+    .hs button::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      border: 1px solid rgba(247, 243, 238, .8);
+      animation: ping 2.6s cubic-bezier(.2, .8, .3, 1) infinite;
+    }
+    .hs.on button {
+      background: var(--bronze);
+      border-color: var(--bronze);
+    }
+    .hs.on button::after {
+      animation: none;
+      opacity: 0;
+    }
+    @keyframes ping {
+      0% { transform: scale(1); opacity: .85; }
+      70%, 100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* Tooltip Callout */
+    .hsout {
+      position: absolute;
+      z-index: 30;
+      background: rgba(247, 243, 238, .96);
+      backdrop-filter: blur(12px);
+      padding: 18px 22px;
+      min-width: 260px;
+      max-width: 330px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .3s, transform .3s;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 36px rgba(30, 26, 23, .22);
+    }
+    .hsout.vis {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+    .hsout b {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .hsout span {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.65;
+      display: block;
+    }
+
+    /* ── ENGINE SECTION (Deep Ink Environment) ── */
+    #engine {
+      background: var(--ink);
+      color: var(--pearl);
+      padding: clamp(72px, 10vw, 130px) clamp(24px, 5vw, 84px);
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+    #engine .egrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    #engine .eimg {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .1);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, .4);
+    }
+    #engine .eimg img {
+      width: 100%;
+      height: clamp(340px, 42vw, 540px);
+      object-fit: cover;
+      display: block;
+    }
+    #engine .ecopy h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.05;
+      margin-top: 14px;
+      margin-bottom: 18px;
+    }
+    #engine .ecopy h2 em { font-style: italic; color: var(--bronze); }
+    #engine .ecopy p {
+      font-size: 14.5px;
+      line-height: 1.78;
+      color: rgba(247, 243, 238, .74);
+      max-width: 48ch;
+      margin-bottom: 30px;
+    }
+    #engine dl {
+      margin-top: 12px;
+      border-top: 1px solid rgba(247, 243, 238, .16);
+    }
+    #engine dl div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(247, 243, 238, .09);
+      font-size: 13.5px;
+    }
+    #engine dl dt {
+      color: rgba(247, 243, 238, .5);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    #engine dl dd {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      color: var(--pearl);
+    }
+
+    /* ── CRAFTSMANSHIP & TECHNOLOGY STEPS ── */
+    #craft {
+      padding: clamp(72px, 10vw, 130px) clamp(24px, 5vw, 84px);
+    }
+    #craft .head {
+      max-width: 1440px;
+      margin: 0 auto 56px;
+    }
+    #craft .head h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(28px, 3.8vw, 48px);
+      line-height: 1.06;
+      max-width: 24ch;
+      margin-top: 14px;
+    }
+    #craft .head h2 em { font-style: italic; color: var(--bronze); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .steps article.craft-card {
+      background: #14110F;
+      border: 1px solid rgba(178, 135, 78, .26);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(30, 26, 23, .14);
+      transition: transform .4s cubic-bezier(.3, .9, .3, 1), box-shadow .4s, border-color .4s;
+      position: relative;
+    }
+    .steps article.craft-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 50px rgba(30, 26, 23, .26);
+      border-color: var(--bronze);
+    }
+    .steps article.craft-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .6s cubic-bezier(.3, .9, .3, 1);
+    }
+    .steps article.craft-card:hover img {
+      transform: scale(1.03);
+    }
+
+    /* ── RESERVE / BESPOKE CTA ── */
+    #reserve {
+      background: var(--ink);
+      color: var(--pearl);
+      padding: clamp(84px, 12vw, 160px) clamp(24px, 5vw, 84px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #reserve::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(178, 135, 78, .12), transparent 60%);
+      pointer-events: none;
+    }
+    #reserve h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(34px, 5.8vw, 76px);
+      line-height: 1.02;
+      letter-spacing: .02em;
+      max-width: 22ch;
+      margin: 16px auto 16px;
+    }
+    #reserve h2 em { font-style: italic; color: var(--bronze); }
+    #reserve p {
+      font-size: 14.5px;
+      color: rgba(247, 243, 238, .70);
+      max-width: 48ch;
+      margin: 0 auto 46px;
+      line-height: 1.76;
+    }
+    #reserve .cta-btn {
+      display: inline-block;
+      background: var(--pearl);
+      color: var(--ink);
+      padding: 18px 52px;
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      border: 0;
+      cursor: pointer;
+      transition: background .3s, color .3s;
+      font-family: inherit;
+    }
+    #reserve .cta-btn:hover {
+      background: var(--bronze);
+      color: var(--pearl);
+    }
+
+    /* ── CONSULTANCY MODAL STYLING ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(14, 12, 10, .82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s cubic-bezier(.4, 0, .2, 1);
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-window {
+      background: #1C1815;
+      color: var(--pearl);
+      border: 1px solid rgba(178, 135, 78, .35);
+      border-radius: 4px;
+      width: 100%;
+      max-width: 640px;
+      padding: clamp(28px, 5vw, 48px);
+      position: relative;
+      box-shadow: 0 32px 70px rgba(0, 0, 0, .6);
+      transform: translateY(24px) scale(.98);
+      transition: transform .4s cubic-bezier(.4, 0, .2, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-backdrop.open .modal-window {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: 1px solid rgba(247, 243, 238, .18);
+      color: var(--pearl);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .modal-close:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: var(--bronze);
+    }
+    .modal-head {
+      margin-bottom: 28px;
+    }
+    .modal-head h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(26px, 3.8vw, 38px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-top: 10px;
+    }
+    .modal-head h3 em {
+      font-style: italic;
+      color: var(--bronze);
+    }
+    .modal-head p {
+      font-size: 13.5px;
+      color: rgba(247, 243, 238, .62);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--bronze);
+    }
+    .form-group input, .form-group select {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(247, 243, 238, .15);
+      color: var(--pearl);
+      padding: 12px 14px;
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 13.5px;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .form-group select option {
+      background: #1C1815;
+      color: var(--pearl);
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--bronze);
+      background: rgba(255, 255, 255, .08);
+    }
+    .modal-submit {
+      margin-top: 10px;
+      background: var(--bronze);
+      color: var(--pearl);
+      border: 0;
+      padding: 16px 28px;
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .3s;
+    }
+    .modal-submit:hover {
+      background: #9A723D;
+    }
+    .modal-success {
+      display: none;
+      text-align: center;
+      padding: 24px 0 10px;
+    }
+    .modal-success.active {
+      display: block;
+    }
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border: 2px solid var(--bronze);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bronze);
+      font-size: 28px;
+    }
+    .modal-success h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+    .modal-success p {
+      font-size: 14px;
+      color: rgba(247, 243, 238, .7);
+      line-height: 1.7;
+      max-width: 44ch;
+      margin: 0 auto 24px;
+    }
+    .protocol-box {
+      background: rgba(255, 255, 255, .05);
+      border: 1px dashed rgba(178, 135, 78, .4);
+      padding: 12px 18px;
+      display: inline-block;
+      font-family: monospace;
+      font-size: 13px;
+      letter-spacing: .15em;
+      color: var(--bronze);
+      margin-bottom: 24px;
+    }
+
+    /* Additional Interactive Feature Modals */
+    .modal-window.wide {
+      max-width: 780px;
+    }
+    .modal-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(178, 135, 78, .2);
+      border: 1px solid rgba(178, 135, 78, .2);
+      margin: 20px 0;
+    }
+    .modal-spec-grid div {
+      background: rgba(255, 255, 255, .04);
+      padding: 14px 16px;
+      text-align: center;
+    }
+    .modal-spec-grid b {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 26px;
+      color: var(--pearl);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .modal-spec-grid span {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--bronze);
+    }
+    .modal-feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+    .modal-feature-list li {
+      font-size: 13.5px;
+      color: rgba(247, 243, 238, .78);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .modal-feature-list li::before {
+      content: '◆';
+      color: var(--bronze);
+      font-size: 10px;
+    }
+    .modal-price-tag {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      color: var(--bronze);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .modal-actions button, .modal-actions a {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+    .modal-sec-btn {
+      background: transparent;
+      border: 1px solid var(--bronze);
+      color: var(--bronze);
+      padding: 16px 24px;
+      font-size: 10.5px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .3s, color .3s;
+      display: inline-block;
+    }
+    .modal-sec-btn:hover {
+      background: rgba(178, 135, 78, .15);
+      color: var(--pearl);
+    }
+
+    /* Calculator & Cards */
+    .calc-slider-box {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .calc-slider-box input[type="range"] {
+      width: 100%;
+      accent-color: var(--bronze);
+      cursor: pointer;
+    }
+    .calc-res-card {
+      background: rgba(178, 135, 78, .1);
+      border: 1px solid rgba(178, 135, 78, .3);
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+      border-radius: 2px;
+    }
+    .calc-res-card b {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 38px;
+      color: var(--bronze);
+      margin: 6px 0;
+    }
+
+    /* Boutiques & Channels */
+    .card-grid-modal {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .boutique-card {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(178, 135, 78, .2);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .boutique-card h5 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--pearl);
+      margin-bottom: 4px;
+    }
+    .boutique-card p {
+      font-size: 12.5px;
+      color: rgba(247, 243, 238, .6);
+      line-height: 1.5;
+    }
+    .press-card {
+      background: rgba(255, 255, 255, .03);
+      border-left: 2px solid var(--bronze);
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .press-date {
+      font-size: 9.5px;
+      letter-spacing: .2em;
+      color: var(--bronze);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .press-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 19px;
+      color: var(--pearl);
+      line-height: 1.25;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: var(--pearl);
+      padding: clamp(52px, 7vw, 92px) clamp(24px, 5vw, 84px) 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+    footer .cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding-bottom: clamp(48px, 7vw, 84px);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+    footer .col .mk {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: .3em;
+      margin-bottom: 16px;
+      display: block;
+    }
+    footer .col .tag {
+      font-size: 11.5px;
+      line-height: 1.72;
+      color: rgba(247, 243, 238, .54);
+    }
+    footer .col h4 {
+      font-size: 10px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      margin-bottom: 18px;
+    }
+    footer .col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    footer .col ul a {
+      font-size: 13px;
+      color: rgba(247, 243, 238, .58);
+      transition: color .2s;
+    }
+    footer .col ul a:hover { color: var(--pearl); }
+    footer .legal {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(247, 243, 238, .36);
+    }
+
+    /* ── SCROLL REVEALS ── */
+    .rv, .hv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s cubic-bezier(.4, 0, .2, 1), transform .8s cubic-bezier(.4, 0, .2, 1);
+    }
+    .rv.in, .hv.in {
+      opacity: 1;
+      transform: none;
+    }
+    .hv { transform: translateX(-24px); }
+
+    /* ── RESPONSIVE ADAPTATIONS ── */
+    @media (max-width: 1024px) {
+      #trim { grid-template-columns: 1fr; }
+      #engine .egrid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      #hero .carstack { width: 85vw; right: -5vw; top: 58%; }
+      #hero .specs { position: static; margin: 20px clamp(24px, 4vw, 68px) 36px; }
+    }
+    @media (max-width: 768px) {
+      nav.master-nav ul { display: none; }
+      #band { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: 1fr; }
+      footer .cols { grid-template-columns: repeat(2, 1fr); }
+      #hero .carstack { position: relative; width: 100%; right: auto; top: auto; transform: none; margin: 20px 0; }
+    }
+    @media (max-width: 480px) {
+      footer .cols { grid-template-columns: 1fr; }
+      #hero .specs { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTER NAVIGATION (Auto-Inversion) -->
+  <nav class="master-nav" id="master-nav">
+    <div class="mk">VALDORA</div>
+    <ul>
+      <li><a href="#showcase">Apresentação</a></li>
+      <li><a href="#trim">Modelos</a></li>
+      <li><a href="#interior">Interior</a></li>
+      <li><a href="#engine">Desempenho</a></li>
+      <li><a href="#craft">Engenharia</a></li>
+      <li><a href="#gallery">Galeria</a></li>
+    </ul>
+    <a href="#reserve" class="res-btn">Configurar</a>
+  </nav>
+
+  <!-- 1. HERO COVER (Capa Cinematográfica: Foto do Carro no Fundo + Tipografia VALDORA Móvel) -->
+  <section id="hero">
+    <div class="wash" aria-hidden="true"></div>
+    <div class="ray" aria-hidden="true"></div>
+    <img class="backdrop-photo" src="assets/hero-backdrop.png" alt="SUV Valdora ao Entardecer Alpino">
+    <div class="cover-scrim" aria-hidden="true"></div>
+
+    <!-- Watermark typography that moves with mouse -->
+    <div class="marquee" aria-hidden="true">
+      <b id="marquee-txt">VALDORA</b>
+    </div>
+
+    <!-- Minimal Cover Footer -->
+    <div class="cover-footer rv">
+      <span class="lbl">Grand Luxury SUV · 2026</span>
+      <a href="#showcase" class="cover-scroll-indicator" aria-label="Rolar para Apresentação do Veículo">
+        <span>Explorar Modelo</span>
+        <div class="scrl-line"></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. SHOWCASE (Estúdio & Especificações: Carro com Seletor de Cores, Texto e Specs) -->
+  <section id="showcase">
+    <div class="showcase-wash" aria-hidden="true"></div>
+
+    <div class="showcase-main">
+      <!-- Info Plate -->
+      <div class="plate rv">
+        <span class="lbl">Valdora · Grand Luxury SUV 2026</span>
+        <h1 class="ed">
+          A Nobreza da Potência.<br>
+          <em>Redefinida.</em>
+        </h1>
+        <p>
+          Forjado nos passos alpinos e lapidado para as capitais do mundo. O Valdora une a presença incontestável de um SUV de grande porte à dinâmica visceral de um motor V8 Twin-Turbo calibrado à mão.
+        </p>
+
+        <!-- Paint Selection -->
+        <div class="paints" role="group" aria-label="Seletor de Pintura">
+          <button class="sw on" id="sw-0" style="--c:#1E1C1A;" aria-label="Obsidian Nero Metallic" title="Obsidian Nero"></button>
+          <button class="sw" id="sw-1" style="--c:#831F25;" aria-label="Rosso Rubino Metallic" title="Rosso Rubino"></button>
+          <button class="sw" id="sw-2" style="--c:#C2C4C6;" aria-label="Argento Platino Metallic" title="Argento Platino"></button>
+          <span class="pn" id="pn-label">Obsidian Nero Metallic</span>
+        </div>
+      </div>
+
+      <!-- Photorealistic Car Stack (Studio Models Cutout) -->
+      <div class="car-stage rv">
+        <div class="carstack" id="car-stack" aria-label="Modelo 3D do SUV Valdora">
+          <div class="car-ground-shadow" aria-hidden="true"></div>
+          <img class="cc on" id="car-0" src="assets/suv-hero-black-trans.png" alt="SUV Valdora em Obsidian Nero Metallic">
+          <img class="cc" id="car-1" src="assets/suv-hero-red-trans.png" alt="SUV Valdora em Rosso Rubino Metallic">
+          <img class="cc" id="car-2" src="assets/suv-hero-silver-trans.png" alt="SUV Valdora em Argento Platino Metallic">
+        </div>
+      </div>
+    </div>
+
+    <!-- Specs row callout -->
+    <div class="showcase-specs rv">
+      <div><b>4.4</b><span>Litros V8</span></div>
+      <div><b>640</b><span>Cavalos (CV)</span></div>
+      <div><b>850</b><span>Nm Torque</span></div>
+      <div><b>3.6</b><span>0-100 km/h</span></div>
+    </div>
+  </section>
+
+  <!-- DARK SPEC BAND -->
+  <div id="band">
+    <div class="cell rv">
+      <b>4,395<span style="font-size:.52em;font-family:'Zen Kaku Gothic New',sans-serif;vertical-align:middle;"> cc</span></b>
+      <span>Cilindrada V8 Twin-Scroll</span>
+    </div>
+    <div class="cell rv">
+      <b>640 CV</b>
+      <span>Potência Máxima a 6.000 rpm</span>
+    </div>
+    <div class="cell rv">
+      <b>850 Nm</b>
+      <span>Torque Disponível desde 1.800 rpm</span>
+    </div>
+    <div class="cell rv">
+      <b>8 Velocidades</b>
+      <span>Transmissão Esportiva com PTM</span>
+    </div>
+  </div>
+
+  <!-- TRIM PICKER SECTION -->
+  <section id="trim">
+    <div class="copy rv">
+      <span class="lbl">Configuração &amp; Versões</span>
+      <h2>Escolha a sua<br>expressão de <em>luxo.</em></h2>
+      <p>
+        Cada variante do Valdora expressa uma nuance distinta de supremacia automobilística. Do refinamento acústico sereno à ferocidade de pista, configure a máquina moldada para o seu ritmo.
+      </p>
+
+      <div class="readout" id="trim-readout">
+        <div><b id="rd-hp">640</b><span>Cavalos (CV)</span></div>
+        <div><b id="rd-nm">850</b><span>Torque (Nm)</span></div>
+        <div><b id="rd-top">305</b><span>Vel. Máx (km/h)</span></div>
+        <div><b id="rd-acc">3.6</b><span>0 a 100 km/h (s)</span></div>
+      </div>
+    </div>
+
+    <div class="rv">
+      <div class="picker" id="trim-picker">
+        <button class="picker-btn" data-hp="440" data-nm="620" data-top="270" data-acc="4.4">
+          <span class="nm">Valdora Pure Luxury</span>
+          <span class="no">V6 Biturbo · 440 CV</span>
+        </button>
+        <button class="picker-btn active" data-hp="640" data-nm="850" data-top="305" data-acc="3.6">
+          <span class="nm">Valdora First Edition</span>
+          <span class="no">V8 Twin-Turbo · 640 CV</span>
+        </button>
+        <button class="picker-btn" data-hp="740" data-nm="960" data-top="315" data-acc="3.2">
+          <span class="nm">Valdora E-Performance</span>
+          <span class="no">V8 Plug-in Hybrid · 740 CV</span>
+        </button>
+        <button class="picker-btn" data-hp="680" data-nm="900" data-top="310" data-acc="3.4">
+          <span class="nm">Valdora Bespoke Atelier</span>
+          <span class="no">V8 Biturbo Blackline · 680 CV</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-BLEED ROAD SECTION -->
+  <section id="road">
+    <div class="fixframe">
+      <img src="assets/road-landscape.png" alt="Estrada dos Alpes ao Entardecer">
+    </div>
+    <div class="over" aria-hidden="true"></div>
+    <div class="content rv">
+      <span class="lbl">Topografia &amp; Soberania</span>
+      <h2>Silêncio absoluto<br>a 200 km/h.</h2>
+      <p>
+        Onde o asfalto serpenteia sobre os vales dourados, o chassi ativo do Valdora anula as irregularidades antes que alcancem o habitáculo. Vidros duplos acústicos e suspensão com leitura preditiva do solo.
+      </p>
+      <a href="#reserve" class="res-btn" style="display:inline-block;border-color:var(--pearl);color:var(--pearl);">
+        Agendar Experiência Privada
+      </a>
+    </div>
+  </section>
+
+  <!-- GALLERY DRAG RAIL -->
+  <section id="gallery">
+    <div class="header">
+      <div class="rv">
+        <span class="lbl">Perspectivas Exclusivas</span>
+        <h2>Galeria <em>Hiper-Realista.</em></h2>
+      </div>
+      <span class="lbl rv">Arraste para navegar &#8594;</span>
+    </div>
+
+    <div class="rail-wrap" id="rail-wrap">
+      <div class="rail" id="gallery-rail">
+        <figure>
+          <div class="img-box">
+            <img src="assets/gallery-sunset.png" alt="SUV de luxo ao pôr do sol nas montanhas" loading="lazy">
+          </div>
+          <figcaption>01 · Silhueta ao Pôr do Sol — Proporções imponentes sob luz alpina</figcaption>
+        </figure>
+
+        <figure>
+          <div class="img-box">
+            <img src="assets/gallery-speed.png" alt="SUV esportivo em alta velocidade na montanha" loading="lazy">
+          </div>
+          <figcaption>02 · Dinâmica Ativa — Aerodinâmica adaptativa e estabilidade em curva</figcaption>
+        </figure>
+
+        <figure>
+          <div class="img-box">
+            <img src="assets/wheel-detail.png" alt="Roda forjada de 23 polegadas com pinças bronze" loading="lazy">
+          </div>
+          <figcaption>03 · Rodas Forjadas 23″ — Corte diamante e freios de carbono-cerâmica</figcaption>
+        </figure>
+
+        <figure>
+          <div class="img-box">
+            <img src="assets/gallery-mountain.png" alt="SUV na estrada montanhosa ao entardecer" loading="lazy">
+          </div>
+          <figcaption>04 · Presença &amp; Altitude — Chassi com esterçamento ativo nas quatro rodas</figcaption>
+        </figure>
+
+        <figure>
+          <div class="img-box">
+            <img src="assets/road-curves.png" alt="Curvas douradas na montanha ao entardecer" loading="lazy">
+          </div>
+          <figcaption>05 · Horizonte Sem Limites — Tração integral inteligente com bloqueio eletromecânico</figcaption>
+        </figure>
+
+        <figure>
+          <div class="img-box">
+            <img src="assets/interior-dawn.png" alt="Interior luxuoso ao amanhecer nas montanhas" loading="lazy">
+          </div>
+          <figcaption>06 · Panorama Celestial — Teto solar acústico com tratamento fotoeletrocrômico</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERIOR COCKPIT HOTSPOTS -->
+  <section id="interior">
+    <div class="header">
+      <div class="rv">
+        <span class="lbl">Habitáculo de Primeira Classe</span>
+        <h2>Cockpit <em>Artesanal.</em></h2>
+      </div>
+      <span class="lbl rv">Toque nos marcadores para explorar</span>
+    </div>
+
+    <div class="ifig rv">
+      <div class="scene">
+        <img src="assets/interior-cockpit.png" alt="Cockpit Luxuoso com Detalhes Dourados do SUV Valdora">
+
+        <!-- Hotspot 1: Volante -->
+        <div class="hs" style="left:27%;top:58%;">
+          <button id="hs-0" aria-label="Volante Multifuncional"></button>
+          <div class="hsout" id="hsout-0" style="left:34px;top:-16px;">
+            <b>Volante Ergonômico em Couro Nappa</b>
+            <span>Empunhadura perfurada à mão com costuras em fio dourado, paddle shifters em magnésio forjado e seletor tátil de modos de condução.</span>
+          </div>
+        </div>
+
+        <!-- Hotspot 2: Display Curvo -->
+        <div class="hs" style="left:48%;top:38%;">
+          <button id="hs-1" aria-label="Display Panorâmico Curvo"></button>
+          <div class="hsout" id="hsout-1" style="left:34px;top:-16px;">
+            <b>Display Curvo OLED 27″</b>
+            <span>Superfície de vidro curvo contínua com resolução 5K, navegação com realidade aumentada e interface háptica com retorno instantâneo.</span>
+          </div>
+        </div>
+
+        <!-- Hotspot 3: Assentos -->
+        <div class="hs" style="left:76%;top:48%;">
+          <button id="hs-2" aria-label="Assentos de Alta Confortabilidade"></button>
+          <div class="hsout" id="hsout-2" style="right:34px;left:auto;top:-10px;">
+            <b>Poltronas Executivas com 24 Ajustes</b>
+            <span>Couro semi-anilina de curtimento vegetal com climatização ativa, almofadas pneumáticas e 8 programas de massagem por pedras quentes.</span>
+          </div>
+        </div>
+
+        <!-- Hotspot 4: Console Central -->
+        <div class="hs" style="left:56%;top:64%;">
+          <button id="hs-3" aria-label="Console Central em Madeira Nobre"></button>
+          <div class="hsout" id="hsout-3" style="left:34px;bottom:30px;top:auto;">
+            <b>Console em Madeira de Nogueira</b>
+            <span>Lâminas de madeira nobre de poro aberto com inserções em bronze escovado e seletor de transmissão em cristal lapidado suíço.</span>
+          </div>
+        </div>
+
+        <!-- Hotspot 5: Sistema de Som -->
+        <div class="hs" style="left:12%;top:46%;">
+          <button id="hs-4" aria-label="Sistema de Som High-End"></button>
+          <div class="hsout" id="hsout-4" style="left:34px;top:-10px;">
+            <b>Sistema de Áudio Acústico 4D</b>
+            <span>31 alto-falantes de altíssima fidelidade com 1.750 Watts de potência e cancelamento ativo de ruído integrado aos apoios de cabeça.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINE & POWERTRAIN (Dark Contrast) -->
+  <section id="engine">
+    <div class="egrid">
+      <div class="eimg rv">
+        <img src="assets/engine-v6.png" alt="Motor V8 Twin-Turbo Valdora em Detalhe Técnico">
+      </div>
+
+      <div class="ecopy rv">
+        <span class="lbl">Engenharia Mecânica · Alta Performance</span>
+        <h2>Precisão forjada em<br><em>cada componente.</em></h2>
+        <p>
+          O bloco de alumínio aeroespacial abriga dois turbocompressores twin-scroll montados no interior do V ("hot inside V"), reduzindo a inércia dos gases e garantindo resposta de aceleração quase imediata.
+        </p>
+
+        <dl>
+          <div><dt>Arquitetura</dt><dd>V8 90° Twin-Turbo Intercooler</dd></div>
+          <div><dt>Cilindrada</dt><dd>4.395 cm³ (Injeção Direta 350 bar)</dd></div>
+          <div><dt>Potência</dt><dd>640 CV (471 kW) a 6.000 rpm</dd></div>
+          <div><dt>Torque Máximo</dt><dd>850 Nm disponível entre 1.800–5.400 rpm</dd></div>
+          <div><dt>Transmissão</dt><dd>Automática de 8 Marchas com Launch Control</dd></div>
+          <div><dt>Aceleração 0–100</dt><dd>3,6 segundos</dd></div>
+          <div><dt>Velocidade Máxima</dt><dd>305 km/h (limitada eletronicamente)</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAFTSMANSHIP & TECHNOLOGY (3-Column Grid) -->
+  <section id="craft">
+    <div class="head rv">
+      <span class="lbl">Inovação &amp; Dinâmica</span>
+      <h2>Ciência aplicada à arte de<br><em>dominar qualquer terreno.</em></h2>
+    </div>
+
+    <div class="steps">
+      <article class="rv craft-card">
+        <img src="assets/craft-01-suspensao.jpg" alt="01 · Suspensão Pneumática Adaptativa 3C" loading="lazy">
+      </article>
+
+      <article class="rv craft-card">
+        <img src="assets/craft-02-estercamento.jpg" alt="02 · Esterçamento Dinâmico Traseiro" loading="lazy">
+      </article>
+
+      <article class="rv craft-card">
+        <img src="assets/craft-03-estabilizacao.jpg" alt="03 · Estabilização Ativa Antirrolagem 48V" loading="lazy">
+      </article>
+
+      <article class="rv craft-card">
+        <img src="assets/craft-04-freios.jpg" alt="04 · Freios de Carbono-Cerâmica (CCB)" loading="lazy">
+      </article>
+
+      <article class="rv craft-card">
+        <img src="assets/craft-05-farois.jpg" alt="05 · Faróis Matrix Laser Digitais" loading="lazy">
+      </article>
+
+      <article class="rv craft-card">
+        <img src="assets/craft-06-telemetria.jpg" alt="06 · Telemetria Satelital &amp; Concierge OTA" loading="lazy">
+      </article>
+    </div>
+  </section>
+
+  <!-- BESPOKE RESERVE CTA -->
+  <section id="reserve">
+    <span class="lbl">Atelier Privado Valdora</span>
+    <h2 class="rv">Sua jornada singular<br><em>começa aqui.</em></h2>
+    <p class="rv">
+      Cada exemplar do Valdora pode ser personalizado ao infinito através do programa Bespoke Atelier. Couros raros, madeiras certificadas e tintas sob medida para a sua assinatura pessoal.
+    </p>
+    <button type="button" class="cta-btn" id="open-consultancy-btn">Solicitar Consultoria Exclusiva</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="cols">
+      <div class="col">
+        <span class="mk">VALDORA</span>
+        <p class="tag">
+          A união definitiva entre poder, silêncio e refinamento artesanal.<br>
+          Projetado sem concessões.
+        </p>
+      </div>
+
+      <div class="col">
+        <h4>Modelos</h4>
+        <ul>
+          <li><a href="#model" data-modal="model" data-key="pure-luxury">Valdora Pure Luxury</a></li>
+          <li><a href="#model" data-modal="model" data-key="first-edition">Valdora First Edition</a></li>
+          <li><a href="#model" data-modal="model" data-key="e-performance">Valdora E-Performance</a></li>
+          <li><a href="#model" data-modal="model" data-key="bespoke">Valdora Bespoke Atelier</a></li>
+          <li><a href="#model" data-modal="model" data-key="coupe-sv">Valdora Coupé SV</a></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h4>Experiência</h4>
+        <ul>
+          <li><a href="#showcase" data-action="atelier">Atelier de Configuração</a></li>
+          <li><a href="#testdrive" data-modal="testdrive">Test Drive Alpino</a></li>
+          <li><a href="#armor" data-modal="armor">Programa de Blindagem</a></li>
+          <li><a href="#financial" data-modal="financial">Valdora Financial Services</a></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#concierge" data-modal="concierge">Bespoke Concierge</a></li>
+          <li><a href="#boutiques" data-modal="boutiques">Localizador de Boutiques</a></li>
+          <li><a href="#press" data-modal="press">Imprensa &amp; Notícias</a></li>
+          <li><a href="#owner" data-modal="owner">Portal do Proprietário</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>&copy; 2026 VALDORA AUTOMOTIVE S.P.A. TODOS OS DIREITOS RESERVADOS.</span>
+      <span><a href="#emissions" data-modal="emissions" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Consumo combinado: 11,4 l/100 km &middot; Emissões de CO&#8322;: 258 g/km</a></span>
+    </div>
+  </footer>
+
+  <!-- CONSULTANCY MODAL -->
+  <div class="modal-backdrop" id="consultancy-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close" id="modal-close-btn" aria-label="Fechar">&#x2715;</button>
+
+      <!-- Form View -->
+      <div id="modal-form-view">
+        <div class="modal-head">
+          <span class="lbl">Bespoke Atelier · Experiência Privada</span>
+          <h3>Solicitar <em>Consultoria Exclusiva</em></h3>
+          <p>Preencha os dados abaixo para que nosso time de especialistas entre em contato e configure o seu Valdora sob medida.</p>
+        </div>
+
+        <form class="modal-form" id="consultancy-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-name">Nome Completo</label>
+              <input type="text" id="c-name" placeholder="Ex: Dr. Marcelo Alencar" required>
+            </div>
+            <div class="form-group">
+              <label for="c-phone">Telefone / WhatsApp</label>
+              <input type="tel" id="c-phone" placeholder="(11) 99876-5432" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="c-email">E-mail Profissional ou Pessoal</label>
+            <input type="email" id="c-email" placeholder="nome@dominio.com.br" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="c-model">Versão de Interesse</label>
+              <select id="c-model">
+                <option value="first-edition">Valdora First Edition · V8 640 CV</option>
+                <option value="pure-luxury">Valdora Pure Luxury · V6 440 CV</option>
+                <option value="e-performance">Valdora E-Performance · V8 Hybrid 740 CV</option>
+                <option value="bespoke">Valdora Bespoke Atelier · V8 680 CV</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="c-boutique">Boutique Preferencial</label>
+              <select id="c-boutique">
+                <option value="sp">Boutique São Paulo · Jardins</option>
+                <option value="rj">Boutique Rio de Janeiro · Leblon</option>
+                <option value="pr">Boutique Curitiba · Batel</option>
+                <option value="home">Atendimento Domiciliar / Corporativo</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="modal-submit">Confirmar Solicitação de Consultoria</button>
+        </form>
+      </div>
+
+      <!-- Success View -->
+      <div class="modal-success" id="modal-success-view">
+        <div class="success-icon">&#x2713;</div>
+        <h4>Consultoria Solicitada com Sucesso</h4>
+        <p>Agradecemos seu interesse na excelência do SUV Valdora. O seu protocolo de atendimento exclusivo foi registrado:</p>
+        <div class="protocol-box">PROTOCOLO: #VAL-2026-8941</div>
+        <p>Um consultor executivo dedicado entrará em contato em até 2 horas úteis pelo número informado.</p>
+        <button type="button" class="modal-submit" id="modal-success-close">Concluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DYNAMIC MODEL DOSSIER MODAL -->
+  <div class="modal-backdrop" id="model-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window wide">
+      <button class="modal-close" data-close="model-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl" id="m-badge">Dossiê Exclusivo de Versão</span>
+        <h3 id="m-title">Valdora <em>First Edition</em></h3>
+        <p id="m-desc">A expressão definitiva do poder V8 calibrado nos passos alpinos. Desempenho visceral embalado pelo mais puro couro Nappa.</p>
+      </div>
+
+      <div class="modal-spec-grid">
+        <div><b id="m-hp">640</b><span>Potência CV</span></div>
+        <div><b id="m-nm">850</b><span>Torque Nm</span></div>
+        <div><b id="m-top">305</b><span>Vel. Máx km/h</span></div>
+        <div><b id="m-acc">3.6</b><span>0-100 km/h (s)</span></div>
+      </div>
+
+      <span class="lbl">Equipamentos de Série em Destaque</span>
+      <ul class="modal-feature-list" id="m-features">
+        <li>Rodas forjadas de 23″ com acabamento corte diamante e pinças em ouro champagne</li>
+        <li>Sistema de escape esportivo ativo em titânio com quatro saídas e válvula pneumática</li>
+        <li>Chassi dinâmico com esterçamento no eixo traseiro até 4,5°</li>
+        <li>Bancos esportivos executivos em couro semi-anilina com massagem por pedras quentes</li>
+      </ul>
+
+      <div class="modal-price-tag" id="m-price">A partir de R$ 2.150.000</div>
+
+      <div class="modal-actions">
+        <button type="button" class="modal-submit" id="m-btn-consult">Solicitar Proposta desta Versão</button>
+        <button type="button" class="modal-sec-btn" id="m-btn-config">Configurar no Estúdio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST DRIVE ALPINO MODAL -->
+  <div class="modal-backdrop" id="testdrive-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close" data-close="testdrive-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Experiência Dinâmica Privada</span>
+        <h3>Agendamento de <em>Test Drive Alpino</em></h3>
+        <p>Vivencie a dinâmica e o silêncio de rodagem do Valdora em circuitos selecionados acompanhado de um piloto instrutor homologado.</p>
+      </div>
+
+      <form class="modal-form" id="testdrive-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="td-name">Nome Completo</label>
+            <input type="text" id="td-name" placeholder="Ex: Roberto Simonsen" required>
+          </div>
+          <div class="form-group">
+            <label for="td-phone">Telefone / WhatsApp</label>
+            <input type="tel" id="td-phone" placeholder="(11) 98765-4321" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="td-track">Circuito / Local</label>
+            <select id="td-track">
+              <option value="fasano">Circuito Pista Fasano Boa Vista (Porto Feliz · SP)</option>
+              <option value="campos">Rota Alpina Serra da Mantiqueira (Campos do Jordão · SP)</option>
+              <option value="graciosa">Rota Panorâmica Serra da Graciosa (Curitiba · PR)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="td-model">Versão do Veículo</label>
+            <select id="td-model">
+              <option value="first">Valdora First Edition V8 (640 CV)</option>
+              <option value="hybrid">Valdora E-Performance Hybrid (740 CV)</option>
+              <option value="pure">Valdora Pure Luxury V6 (440 CV)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="td-date">Data Preferencial</label>
+          <input type="date" id="td-date" required>
+        </div>
+
+        <button type="submit" class="modal-submit">Confirmar Agendamento de Test Drive</button>
+      </form>
+
+      <div class="modal-success" id="testdrive-success">
+        <div class="success-icon">&#x2713;</div>
+        <h4>Sessão de Test Drive Solicitada</h4>
+        <p>Seu pedido foi direcionado ao concierge de experiências de pista. Protocolo gerado:</p>
+        <div class="protocol-box">PROTOCOLO: #TEST-DRIVE-7704</div>
+        <p>Nossa equipe entrará em contato para confirmar o credenciamento de acesso e horários da pista privada.</p>
+        <button type="button" class="modal-submit" data-close="testdrive-modal">Concluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARMOR / BLINDAGEM MODAL -->
+  <div class="modal-backdrop" id="armor-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window wide">
+      <button class="modal-close" data-close="armor-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Programa Oficial de Blindagem</span>
+        <h3>Valdora Armor <em>Nível III-A</em></h3>
+        <p>A mais avançada tecnologia balística integrada à carroceria do Valdora, preservando 100% da garantia original de fábrica de 5 anos.</p>
+      </div>
+
+      <ul class="modal-feature-list">
+        <li><strong>Vidros Balísticos AGP 21 mm:</strong> Resistência balística multihit contra calibres .44 Magnum e 9mm com máxima transparência e sem distorção óptica.</li>
+        <li><strong>Aramida Termoformada DuPont Kevlar®:</strong> Painéis leves de alta tenacidade aplicados em 100% das portas, teto, colunas A, B e C.</li>
+        <li><strong>Proteção de Assoalho e Bateria:</strong> Escudo composto contra fragmentos e impactos inferiores sem alteração da altura livre do solo.</li>
+        <li><strong>Anéis de Aço Run-Flat nas 4 Rodas:</strong> Permite rodar até 80 km a 80 km/h mesmo com pneus totalmente despressurizados.</li>
+        <li><strong>Preservação Dinâmica Total:</strong> Recalibração de fábrica dos amortecedores pneumáticos 3C e dos sensores de assistência de condução ADAS.</li>
+      </ul>
+
+      <div class="modal-actions">
+        <button type="button" class="modal-submit" id="armor-btn-quote">Solicitar Laudo e Cotação de Blindagem</button>
+        <button type="button" class="modal-sec-btn" data-close="armor-modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL SERVICES MODAL -->
+  <div class="modal-backdrop" id="financial-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close" data-close="financial-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Valdora Financial Services · Private Banking</span>
+        <h3>Simulador de <em>Leasing &amp; Crédito</em></h3>
+        <p>Condições exclusivas desenhadas para clientes Private Banking com garantia de recompra na troca por um novo exemplar.</p>
+      </div>
+
+      <div class="calc-slider-box">
+        <label for="fin-entry" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--bronze);display:flex;justify-content:space-between;">
+          <span>Valor de Entrada</span>
+          <span id="fin-entry-val">R$ 1.000.000 (46%)</span>
+        </label>
+        <input type="range" id="fin-entry" min="500000" max="1500000" step="50000" value="1000000">
+      </div>
+
+      <div class="calc-slider-box">
+        <label for="fin-months" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--bronze);display:flex;justify-content:space-between;">
+          <span>Prazo do Plano</span>
+          <span id="fin-months-val">36 Meses</span>
+        </label>
+        <input type="range" id="fin-months" min="24" max="48" step="12" value="36">
+      </div>
+
+      <div class="calc-res-card">
+        <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);">Parcela Mensal Estimada (Taxa 0,79% a.m.)</span>
+        <b id="fin-installment">R$ 38.450 / mês</b>
+        <span style="font-size:10px;letter-spacing:.12em;color:rgba(247,243,238,.5);">Com Recompra Garantida (Guaranteed Buyback) de 85% FIPE</span>
+      </div>
+
+      <button type="button" class="modal-submit" style="width:100%;" id="fin-btn-submit">Solicitar Análise Confidencial Private</button>
+    </div>
+  </div>
+
+  <!-- CONCIERGE MODAL -->
+  <div class="modal-backdrop" id="concierge-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close" data-close="concierge-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Atendimento Prioritário 24/7</span>
+        <h3>Bespoke <em>Concierge</em></h3>
+        <p>Canais diretos e confidenciais à disposição para assistência técnica, agendamento de heliponto ou entrega técnica.</p>
+      </div>
+
+      <div class="card-grid-modal">
+        <div class="boutique-card">
+          <div>
+            <h5>Linha Direta VIP 0800</h5>
+            <p>Atendimento telefônico imediato sem fila de espera.</p>
+          </div>
+          <a href="tel:08007709500" class="res-btn" style="text-align:center;">0800 770 9500</a>
+        </div>
+
+        <div class="boutique-card">
+          <div>
+            <h5>WhatsApp Executivo</h5>
+            <p>Contato direto com concierge dedicado em tempo real.</p>
+          </div>
+          <a href="https://wa.me/5511998765432" target="_blank" class="res-btn" style="text-align:center;">Iniciar Chat</a>
+        </div>
+
+        <div class="boutique-card">
+          <div>
+            <h5>E-mail Privado</h5>
+            <p>Envio de solicitações especiais, blindagem e encomendas.</p>
+          </div>
+          <a href="mailto:concierge@valdora-automotive.com" class="res-btn" style="text-align:center;">Enviar E-mail</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOUTIQUES LOCATOR MODAL -->
+  <div class="modal-backdrop" id="boutiques-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window wide">
+      <button class="modal-close" data-close="boutiques-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Rede de Boutiques Oficiais</span>
+        <h3>Boutiques &amp; <em>Ateliers Valdora</em></h3>
+        <p>Espaços exclusivos para especificação, test drive privativo e consultoria personalizada.</p>
+      </div>
+
+      <div class="card-grid-modal">
+        <div class="boutique-card">
+          <div>
+            <h5>Boutique São Paulo · Flagship Jardins</h5>
+            <p>Rua Oscar Freire, 920 · Jardins, São Paulo - SP<br>Telefone: (11) 3089-9500 · Seg a Sáb: 10h às 19h</p>
+          </div>
+          <button type="button" class="res-btn boutique-schedule" data-loc="São Paulo">Agendar Visita</button>
+        </div>
+
+        <div class="boutique-card">
+          <div>
+            <h5>Boutique Rio de Janeiro · Leblon Lounge</h5>
+            <p>Av. Vieira Souto, 450 · Leblon, Rio de Janeiro - RJ<br>Telefone: (21) 2540-8800 · Seg a Sáb: 10h às 19h</p>
+          </div>
+          <button type="button" class="res-btn boutique-schedule" data-loc="Rio de Janeiro">Agendar Visita</button>
+        </div>
+
+        <div class="boutique-card">
+          <div>
+            <h5>Boutique Curitiba · Batel Atelier</h5>
+            <p>Av. do Batel, 1750 · Batel, Curitiba - PR<br>Telefone: (41) 3340-7700 · Seg a Sex: 09h às 18h</p>
+          </div>
+          <button type="button" class="res-btn boutique-schedule" data-loc="Curitiba">Agendar Visita</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESS ROOM MODAL -->
+  <div class="modal-backdrop" id="press-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window wide">
+      <button class="modal-close" data-close="press-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Assessoria de Comunicação &amp; Mídia</span>
+        <h3>Imprensa &amp; <em>Comunicados Oficiais</em></h3>
+        <p>Acompanhe os principais marcos globais e lançamentos da Valdora Automotive S.p.A.</p>
+      </div>
+
+      <div class="press-card">
+        <div class="press-date">14 de Outubro de 2026 · Genebra, Suíça</div>
+        <div class="press-title">Valdora conquista o prêmio de 'SUV Mais Luxuoso do Ano' no Salão Internacional de Genebra.</div>
+      </div>
+
+      <div class="press-card">
+        <div class="press-date">28 de Setembro de 2026 · Nürburgring, Alemanha</div>
+        <div class="press-title">Linha Valdora E-Performance estabelece nova marca oficial para SUVs de grande porte com volta de 7:38 no circuito Nordschleife.</div>
+      </div>
+
+      <div class="press-card">
+        <div class="press-date">10 de Agosto de 2026 · Milão, Itália</div>
+        <div class="press-title">Valdora anuncia ampliação do programa Bespoke Atelier com ateliê dedicado na América do Sul.</div>
+      </div>
+
+      <div class="modal-actions" style="margin-top:24px;">
+        <button type="button" class="modal-submit" id="btn-press-kit">Baixar Press Kit Oficial 2026 (PDF &amp; Fotos 4K)</button>
+        <button type="button" class="modal-sec-btn" data-close="press-modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OWNER PORTAL MODAL -->
+  <div class="modal-backdrop" id="owner-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close" data-close="owner-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Acesso Exclusivo para Proprietários</span>
+        <h3>Portal do <em>Proprietário</em></h3>
+        <p>Gerencie sua garagem, telemetria satelital e agende revisões com serviço Leva-e-Traz em plataforma fechada.</p>
+      </div>
+
+      <form class="modal-form" id="owner-form">
+        <div class="form-group">
+          <label for="ow-id">Chave Digital / Valdora ID</label>
+          <input type="text" id="ow-id" placeholder="Ex: VAL-BR-9902" required>
+        </div>
+        <div class="form-group">
+          <label for="ow-pass">Senha de Acesso ou Código Biométrico</label>
+          <input type="password" id="ow-pass" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="modal-submit">Acessar Garagem Digital</button>
+      </form>
+
+      <div class="modal-success" id="owner-success">
+        <div class="success-icon">&#x2713;</div>
+        <h4>Bem-vindo ao Valdora Club</h4>
+        <p>Autenticação biométrica validada com sucesso para o veículo <strong>Valdora First Edition (CHASSI: *9824)</strong>.</p>
+        <div class="protocol-box">STATUS: VEÍCULO CONECTADO · BATERIA 100% · LOCALIZAÇÃO: SEGURA</div>
+        <button type="button" class="modal-submit" data-close="owner-modal">Fechar Painel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMISSIONS / ENVIRONMENTAL MODAL -->
+  <div class="modal-backdrop" id="emissions-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-window">
+      <button class="modal-close" data-close="emissions-modal" aria-label="Fechar">&#x2715;</button>
+      <div class="modal-head">
+        <span class="lbl">Homologação &amp; Sustentabilidade</span>
+        <h3>Certificado de <em>Eficiência Energética</em></h3>
+        <p>Dados de conformidade ambiental e consumo em conformidade com as normas Conama e ciclo WLTP.</p>
+      </div>
+
+      <div class="modal-spec-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div><b>11,4 l</b><span>Consumo Combinado (km/l: 8,8)</span></div>
+        <div><b>258 g/km</b><span>Emissões CO₂ WLTP</span></div>
+      </div>
+
+      <ul class="modal-feature-list">
+        <li>Classificação de Emissões: Proconve L7 / Euro 6d-ISC-FCM.</li>
+        <li>Linha E-Performance Plug-in: Emissão de apenas 48 g/km de CO₂ em modo híbrido e 0 g/km em modo 100% elétrico.</li>
+        <li>Compensação de carbono: Cada Valdora entregue tem 100% das suas emissões do primeiro ano neutralizadas pelo programa Valdora Forest.</li>
+      </ul>
+
+      <button type="button" class="modal-submit" style="width:100%;" data-close="emissions-modal">Fechar Certificado</button>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE LOGIC -->
+  <script>
+    /* ── PAINT SWITCHER LOGIC ── */
+    const swatches = [
+      { id: 'sw-0', car: 'car-0', name: 'Obsidian Nero Metallic' },
+      { id: 'sw-1', car: 'car-1', name: 'Rosso Rubino Metallic' },
+      { id: 'sw-2', car: 'car-2', name: 'Argento Platino Metallic' }
+    ];
+    const swButtons = document.querySelectorAll('.paints .sw');
+    const carLayers = document.querySelectorAll('.carstack .cc');
+    const pnLabel   = document.getElementById('pn-label');
+
+    swatches.forEach(item => {
+      const btn = document.getElementById(item.id);
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        swButtons.forEach(b => b.classList.remove('on'));
+        carLayers.forEach(c => c.classList.remove('on'));
+
+        btn.classList.add('on');
+        const activeCar = document.getElementById(item.car);
+        if (activeCar) activeCar.classList.add('on');
+        if (pnLabel) pnLabel.textContent = item.name;
+      });
+    });
+
+    /* ── TRIM PICKER & ANIMATED READOUT ── */
+    const trimButtons = document.querySelectorAll('.picker-btn');
+    const rdHp  = document.getElementById('rd-hp');
+    const rdNm  = document.getElementById('rd-nm');
+    const rdTop = document.getElementById('rd-top');
+    const rdAcc = document.getElementById('rd-acc');
+
+    function animateNumber(element, startVal, endVal, decimals, durationMs) {
+      if (!element) return;
+      const start = performance.now();
+      function update(now) {
+        const progress = Math.min((now - start) / durationMs, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = startVal + (endVal - startVal) * ease;
+        element.textContent = decimals > 0 ? current.toFixed(decimals) : Math.round(current).toString();
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    trimButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        trimButtons.forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+
+        const hp  = parseFloat(button.dataset.hp);
+        const nm  = parseFloat(button.dataset.nm);
+        const top = parseFloat(button.dataset.top);
+        const acc = parseFloat(button.dataset.acc);
+
+        if (rdHp)  animateNumber(rdHp,  parseFloat(rdHp.textContent),  hp,  0, 650);
+        if (rdNm)  animateNumber(rdNm,  parseFloat(rdNm.textContent),  nm,  0, 650);
+        if (rdTop) animateNumber(rdTop, parseFloat(rdTop.textContent), top, 0, 650);
+        if (rdAcc) animateNumber(rdAcc, parseFloat(rdAcc.textContent), acc, 1, 650);
+      });
+    });
+
+    /* ── GALLERY RAIL DRAGGING ── */
+    const railWrap = document.getElementById('rail-wrap');
+    const rail     = document.getElementById('gallery-rail');
+    let isDragging = false;
+    let startCoordX = 0;
+    let currentRailOffset = 0;
+
+    railWrap.addEventListener('mousedown', e => {
+      isDragging = true;
+      startCoordX = e.clientX - currentRailOffset;
+      railWrap.classList.add('grabbing');
+    });
+    railWrap.addEventListener('touchstart', e => {
+      isDragging = true;
+      startCoordX = e.touches[0].clientX - currentRailOffset;
+    }, { passive: true });
+
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const maxScroll = -(rail.scrollWidth - railWrap.clientWidth);
+      currentRailOffset = Math.min(0, Math.max(maxScroll, e.clientX - startCoordX));
+      rail.style.transform = `translateX(${currentRailOffset}px)`;
+    });
+    window.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      const maxScroll = -(rail.scrollWidth - railWrap.clientWidth);
+      currentRailOffset = Math.min(0, Math.max(maxScroll, e.touches[0].clientX - startCoordX));
+      rail.style.transform = `translateX(${currentRailOffset}px)`;
+    }, { passive: true });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      railWrap.classList.remove('grabbing');
+    });
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    /* ── COCKPIT HOTSPOTS ── */
+    const hotspotButtons = document.querySelectorAll('.hs button');
+    const hotspotTooltips = document.querySelectorAll('.hsout');
+
+    hotspotButtons.forEach((btn, index) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parentHs = btn.parentElement;
+        const wasActive = parentHs.classList.contains('on');
+
+        hotspotButtons.forEach(b => b.parentElement.classList.remove('on'));
+        hotspotTooltips.forEach(t => t.classList.remove('vis'));
+
+        if (!wasActive) {
+          parentHs.classList.add('on');
+          hotspotTooltips[index].classList.add('vis');
+        }
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.hs')) {
+        hotspotButtons.forEach(b => b.parentElement.classList.remove('on'));
+        hotspotTooltips.forEach(t => t.classList.remove('vis'));
+      }
+    });
+
+    /* ── MARQUEE PARALLAX ── */
+    const marqueeTxt = document.getElementById('marquee-txt');
+    window.addEventListener('mousemove', e => {
+      const offset = (e.clientX / window.innerWidth - 0.5) * 36;
+      if (marqueeTxt) marqueeTxt.style.transform = `translateX(${offset}px)`;
+    });
+
+    /* ── NAVIGATION AUTO-INVERSION ON DARK SECTIONS ── */
+    const masterNav = document.getElementById('master-nav');
+    const darkSections = document.querySelectorAll('#band, #engine, #reserve, footer');
+
+    function checkNavInversion() {
+      const anyIntersecting = Array.from(darkSections).some(section => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 74 && rect.bottom > 74;
+      });
+      masterNav.classList.toggle('inv', anyIntersecting);
+    }
+
+    window.addEventListener('scroll', checkNavInversion, { passive: true });
+    window.addEventListener('resize', checkNavInversion);
+
+    /* ── INTERSECTION OBSERVER FOR SCROLL REVEALS ── */
+    const revealElements = document.querySelectorAll('.rv, .hv');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ── CONSULTANCY MODAL CONTROLLER ── */
+    const modalBackdrop = document.getElementById('consultancy-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalFormView = document.getElementById('modal-form-view');
+    const modalSuccessView = document.getElementById('modal-success-view');
+    const consultancyForm = document.getElementById('consultancy-form');
+    const modalSuccessClose = document.getElementById('modal-success-close');
+    const openModalTriggers = document.querySelectorAll('#open-consultancy-btn, .res-btn');
+
+    function openConsultancyModal(e) {
+      if (e) e.preventDefault();
+      modalFormView.style.display = 'block';
+      modalSuccessView.classList.remove('active');
+      modalBackdrop.classList.add('open');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const firstInput = document.getElementById('c-name');
+      if (firstInput) setTimeout(() => firstInput.focus(), 150);
+    }
+
+    function closeConsultancyModal() {
+      modalBackdrop.classList.remove('open');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openModalTriggers.forEach(btn => {
+      btn.addEventListener('click', openConsultancyModal);
+    });
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeConsultancyModal);
+    if (modalSuccessClose) modalSuccessClose.addEventListener('click', closeConsultancyModal);
+
+    modalBackdrop.addEventListener('click', e => {
+      if (e.target === modalBackdrop) closeConsultancyModal();
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) {
+        closeConsultancyModal();
+      }
+    });
+
+    if (consultancyForm) {
+      consultancyForm.addEventListener('submit', e => {
+        e.preventDefault();
+        modalFormView.style.display = 'none';
+        modalSuccessView.classList.add('active');
+        consultancyForm.reset();
+      });
+    }
+
+    /* ── COMPLETE FOOTER INTERACTIVE LOGIC ── */
+    const modelData = {
+      'pure-luxury': {
+        badge: 'Dossiê Exclusivo · Conforto Sublime',
+        title: 'Valdora <em>Pure Luxury</em>',
+        desc: 'O ápice do equilíbrio entre silêncio de rodagem, suspensão a ar de tripla câmara e acabamento em madeira de nogueira de poros abertos.',
+        hp: '440',
+        nm: '620',
+        top: '270',
+        acc: '4.4',
+        features: [
+          'Motor V6 Biturbo 3.0L com resposta suave e linear',
+          'Poltronas executivas com 24 ajustes pneumáticos e ventilação ativa',
+          'Sistema acústico Burmester 3D Surround com vidros duplos laminados',
+          'Teto panorâmico com escurecimento fotoeletrocrômico'
+        ],
+        price: 'A partir de R$ 1.680.000',
+        formSelect: 'pure-luxury'
+      },
+      'first-edition': {
+        badge: 'Dossiê Exclusivo · Edição de Lançamento',
+        title: 'Valdora <em>First Edition</em>',
+        desc: 'A expressão definitiva do poder V8 calibrado nos passos alpinos. Desempenho visceral embalado pelo mais puro couro Nappa e detalhes em bronze.',
+        hp: '640',
+        nm: '850',
+        top: '305',
+        acc: '3.6',
+        features: [
+          'Motor V8 Twin-Turbo 4.4L forjado artesanalmente',
+          'Rodas forjadas de 23″ com acabamento corte diamante e pinças em ouro champagne',
+          'Sistema de escape esportivo ativo em titânio com quatro saídas e válvula pneumática',
+          'Chassi dinâmico com esterçamento no eixo traseiro até 4,5°'
+        ],
+        price: 'A partir de R$ 2.150.000',
+        formSelect: 'first-edition'
+      },
+      'e-performance': {
+        badge: 'Dossiê Exclusivo · Propulsão Híbrida 800V',
+        title: 'Valdora <em>E-Performance</em>',
+        desc: 'O futuro da alta cilindrada com torque elétrico instantâneo. Mais de 80 km de autonomia 100% elétrica em silêncio absoluto ou aceleração máxima devastadora.',
+        hp: '740',
+        nm: '960',
+        top: '315',
+        acc: '3.2',
+        features: [
+          'Conjunto V8 Híbrido Plug-in com bateria de alta densidade 32 kWh',
+          'Arquitetura elétrica de 800V com recarga ultrarrápida de 10% a 80% em 18 minutos',
+          'Vetorização elétrica de torque de resposta instantânea nas quatro rodas',
+          'Estabilização ativa de rolagem 48V (eAWS)'
+        ],
+        price: 'A partir de R$ 2.480.000',
+        formSelect: 'e-performance'
+      },
+      'bespoke': {
+        badge: 'Atelier Privado · Produção Limitada',
+        title: 'Valdora <em>Bespoke Atelier</em>',
+        desc: 'Produção estritamente limitada a 25 unidades numeradas por ano. Cada detalhe, do tom da costura à madeira do painel, é selecionado pessoalmente com os mestres artesãos em Milão.',
+        hp: '680',
+        nm: '900',
+        top: '310',
+        acc: '3.4',
+        features: [
+          'Monograma e brasão do proprietário gravados a laser nas soleiras iluminadas',
+          'Couro semi-anilina de curtimento vegetal selecionado das melhores selarias italianas',
+          'Acabamento exterior com detalhes em Black Chrome e fibra de carbono forjada',
+          'Consultoria direta com o designer chefe do Valdora Centro Stile'
+        ],
+        price: 'Sob Consulta no Atelier Privado',
+        formSelect: 'bespoke'
+      },
+      'coupe-sv': {
+        badge: 'Dossiê Exclusivo · Silhueta Aerodinâmica',
+        title: 'Valdora <em>Coupé SV</em>',
+        desc: 'Silhueta esportiva com caimento fastback agressivo, aerofólio ativo adaptativo de fibra de carbono e centro de gravidade rebaixado em 20 mm.',
+        hp: '660',
+        nm: '880',
+        top: '312',
+        acc: '3.5',
+        features: [
+          'Teto em peça única de fibra de carbono aparente com redução de 24 kg no centro de gravidade',
+          'Aerofólio traseiro ativo desdobrável com 3 estágios de downforce',
+          'Diferencial traseiro esportivo de deslizamento limitado mecânico-eletrônico',
+          'Bancos concha em fibra de carbono com forração em Alcantara perfurada'
+        ],
+        price: 'A partir de R$ 2.290.000',
+        formSelect: 'first-edition'
+      }
+    };
+
+    // Generic Modal Opener
+    function openModalById(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalById(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Close buttons binding
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeModalById(btn.dataset.close);
+      });
+    });
+
+    // Close on backdrop click for all modals
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+      backdrop.addEventListener('click', e => {
+        if (e.target === backdrop) {
+          backdrop.classList.remove('open');
+          backdrop.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Handle Model Links
+    let currentSelectedModelKey = 'first-edition';
+    document.querySelectorAll('[data-modal="model"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const key = link.dataset.key;
+        const data = modelData[key] || modelData['first-edition'];
+        currentSelectedModelKey = key;
+
+        document.getElementById('m-badge').textContent = data.badge;
+        document.getElementById('m-title').innerHTML = data.title;
+        document.getElementById('m-desc').textContent = data.desc;
+        document.getElementById('m-hp').textContent = data.hp;
+        document.getElementById('m-nm').textContent = data.nm;
+        document.getElementById('m-top').textContent = data.top;
+        document.getElementById('m-acc').textContent = data.acc;
+        document.getElementById('m-price').textContent = data.price;
+
+        const listEl = document.getElementById('m-features');
+        listEl.innerHTML = '';
+        data.features.forEach(feat => {
+          const li = document.createElement('li');
+          li.textContent = feat;
+          listEl.appendChild(li);
+        });
+
+        openModalById('model-modal');
+      });
+    });
+
+    // Model modal actions
+    const mBtnConsult = document.getElementById('m-btn-consult');
+    if (mBtnConsult) {
+      mBtnConsult.addEventListener('click', () => {
+        closeModalById('model-modal');
+        const select = document.getElementById('c-model');
+        const data = modelData[currentSelectedModelKey];
+        if (select && data) select.value = data.formSelect;
+        openConsultancyModal();
+      });
+    }
+
+    const mBtnConfig = document.getElementById('m-btn-config');
+    if (mBtnConfig) {
+      mBtnConfig.addEventListener('click', () => {
+        closeModalById('model-modal');
+        const targetSection = document.getElementById('trim') || document.getElementById('showcase');
+        if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // Atelier Action link
+    document.querySelectorAll('[data-action="atelier"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const sc = document.getElementById('showcase');
+        if (sc) sc.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Test Drive link & form
+    document.querySelectorAll('[data-modal="testdrive"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const formView = document.getElementById('testdrive-form');
+        const succView = document.getElementById('testdrive-success');
+        if (formView) formView.style.display = 'flex';
+        if (succView) succView.classList.remove('active');
+        openModalById('testdrive-modal');
+      });
+    });
+
+    const tdForm = document.getElementById('testdrive-form');
+    if (tdForm) {
+      tdForm.addEventListener('submit', e => {
+        e.preventDefault();
+        tdForm.style.display = 'none';
+        const succView = document.getElementById('testdrive-success');
+        if (succView) succView.classList.add('active');
+        tdForm.reset();
+      });
+    }
+
+    // Armor Modal Link
+    document.querySelectorAll('[data-modal="armor"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModalById('armor-modal');
+      });
+    });
+
+    const armorBtnQuote = document.getElementById('armor-btn-quote');
+    if (armorBtnQuote) {
+      armorBtnQuote.addEventListener('click', () => {
+        closeModalById('armor-modal');
+        openConsultancyModal();
+      });
+    }
+
+    // Financial Modal Link & Calculator
+    document.querySelectorAll('[data-modal="financial"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModalById('financial-modal');
+      });
+    });
+
+    const finEntry = document.getElementById('fin-entry');
+    const finEntryVal = document.getElementById('fin-entry-val');
+    const finMonths = document.getElementById('fin-months');
+    const finMonthsVal = document.getElementById('fin-months-val');
+    const finInstallment = document.getElementById('fin-installment');
+
+    function updateFinanceCalc() {
+      if (!finEntry || !finMonths || !finInstallment) return;
+      const totalCar = 2150000;
+      const entry = parseFloat(finEntry.value);
+      const months = parseInt(finMonths.value, 10);
+      const pct = Math.round((entry / totalCar) * 100);
+
+      finEntryVal.textContent = 'R$ ' + entry.toLocaleString('pt-BR') + ' (' + pct + '%)';
+      finMonthsVal.textContent = months + ' Meses';
+
+      // Monthly payment with 0.79% interest rate
+      const balance = totalCar - entry;
+      const rate = 0.0079;
+      const payment = (balance * rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+      finInstallment.textContent = 'R$ ' + Math.round(payment).toLocaleString('pt-BR') + ' / mês';
+    }
+
+    if (finEntry) finEntry.addEventListener('input', updateFinanceCalc);
+    if (finMonths) finMonths.addEventListener('input', updateFinanceCalc);
+
+    const finBtnSubmit = document.getElementById('fin-btn-submit');
+    if (finBtnSubmit) {
+      finBtnSubmit.addEventListener('click', () => {
+        closeModalById('financial-modal');
+        openConsultancyModal();
+      });
+    }
+
+    // Concierge Modal Link
+    document.querySelectorAll('[data-modal="concierge"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModalById('concierge-modal');
+      });
+    });
+
+    // Boutiques Modal Link
+    document.querySelectorAll('[data-modal="boutiques"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModalById('boutiques-modal');
+      });
+    });
+
+    document.querySelectorAll('.boutique-schedule').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeModalById('boutiques-modal');
+        const loc = btn.dataset.loc;
+        const bSelect = document.getElementById('c-boutique');
+        if (bSelect) {
+          if (loc === 'São Paulo') bSelect.value = 'sp';
+          if (loc === 'Rio de Janeiro') bSelect.value = 'rj';
+          if (loc === 'Curitiba') bSelect.value = 'pr';
+        }
+        openConsultancyModal();
+      });
+    });
+
+    // Press Modal Link
+    document.querySelectorAll('[data-modal="press"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModalById('press-modal');
+      });
+    });
+
+    const btnPressKit = document.getElementById('btn-press-kit');
+    if (btnPressKit) {
+      btnPressKit.addEventListener('click', () => {
+        btnPressKit.textContent = '✓ Download Iniciado (Press Kit 2026.zip)';
+        setTimeout(() => {
+          btnPressKit.textContent = 'Baixar Press Kit Oficial 2026 (PDF & Fotos 4K)';
+        }, 3000);
+      });
+    }
+
+    // Owner Portal Modal Link
+    document.querySelectorAll('[data-modal="owner"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const formView = document.getElementById('owner-form');
+        const succView = document.getElementById('owner-success');
+        if (formView) formView.style.display = 'flex';
+        if (succView) succView.classList.remove('active');
+        openModalById('owner-modal');
+      });
+    });
+
+    const ownerForm = document.getElementById('owner-form');
+    if (ownerForm) {
+      ownerForm.addEventListener('submit', e => {
+        e.preventDefault();
+        ownerForm.style.display = 'none';
+        const succView = document.getElementById('owner-success');
+        if (succView) succView.classList.add('active');
+        ownerForm.reset();
+      });
+    }
+
+    // Emissions Modal Link
+    document.querySelectorAll('[data-modal="emissions"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        openModalById('emissions-modal');
+      });
+    });
+
+  </script>
+</body>
+</html>
